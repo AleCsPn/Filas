@@ -12,7 +12,10 @@ class Fila {
   }
 
   isFull() {
-    return this.#fim === this.#elementos.length - 1;
+    if(this.#fim === this.#elementos.length - 1)
+      return true;
+    else
+      return false;
   }
 
   isEmpty() {
@@ -21,7 +24,10 @@ class Fila {
 
   enqueue(elemento) {
     if (!this.isFull()) {
-      this.#fim++;
+      if(this.#fim === this.#elementos.length - 1) 
+        fim = 0;
+      else
+        this.#fim++;
       this.#elementos[this.#fim] = elemento;
       this.#qtd++;
       console.log(
@@ -33,10 +39,20 @@ class Fila {
   }
 
   dequeue() {
-    if (this.isEmpty()) return null;
-
-    this.#qtd--;
-    return this.#elementos[this.#inicio++];
+    if (!this.isEmpty()){
+      let removido =this.#elementos[this.#inicio];
+      if(this.#inicio===this.#elementos.length - 1) 
+        incio=0;
+      else
+        this.#inicio++;
+      this.#qtd--;
+      console.log(`Remoovido:${removido}`);
+      console.log(
+       `dequeue: início=${this.#inicio}, fim=${this.#fim}, qtd=${this.#qtd}`,
+      );
+      return removido
+    }
+    return null;
   }
 
   first() {
