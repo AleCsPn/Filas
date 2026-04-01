@@ -21,13 +21,16 @@ class Fila {
 
   enqueue(elemento) {
     if (!this.isFull()) {
-      if (this.#fim === this.#elementos.length - 1) this.#fim = 0;
+      if (this.#fim === this.#elementos.length - 1)
+        // se o fim esta na ultima posicao
+        this.#fim = 0;
       else this.#fim++;
       this.#elementos[this.#fim] = elemento;
       this.#qtd++;
       console.log(
         `enqueue: início=${this.#inicio}, fim=${this.#fim}, qtd=${this.#qtd}`,
       );
+      console.log(this.#elementos);
       return true;
     }
     return false;
@@ -43,6 +46,7 @@ class Fila {
       console.log(
         `dequeue: início=${this.#inicio}, fim=${this.#fim}, qtd=${this.#qtd}`,
       );
+      console.log(this.#elementos);
       return removido;
     }
     return null;
@@ -50,22 +54,16 @@ class Fila {
 
   first() {
     if (!this.isEmpty()) return this.#elementos[this.#inicio];
+    else return null;
   }
-
-  last() {
-    if (!this.isEmpty()) return this.#elementos[this.#fim];
-  }
-
+  //last
   toString() {
     let resultado = "";
     let i = this.#inicio;
     for (let cont = 0; cont < this.#qtd; cont++) {
       resultado += `${this.#elementos[i]} | `;
-      if (i === this.#elementos.length - 1) {
-        i = 0;
-      } else {
-        i++;
-      }
+      if (i === this.#elementos.length - 1) i = 0;
+      else i++;
     }
     return resultado;
   }
@@ -89,4 +87,4 @@ class Fila {
       },
     };
   }
-}
+} // fim classe
