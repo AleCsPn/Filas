@@ -8,6 +8,7 @@ class Atendimento {
     this.#cpf = cpf;
     this.#data = data;
     this.#hora = hora;
+    this.momentoEntrada = new Date();
   }
 
 
